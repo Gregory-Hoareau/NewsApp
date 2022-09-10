@@ -20,11 +20,7 @@ extension NewsListView {
             }
             
             URLSession.shared.dataTask(with: url) { data, _, _ in
-                print(data ?? "No data")
-                
                 let decodedResult = try! JSONDecoder().decode(ApiResult.self, from: data!)
-                
-                print(decodedResult)
                 
                 DispatchQueue.main.async {
                     self.news = decodedResult.articles
