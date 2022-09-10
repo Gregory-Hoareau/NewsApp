@@ -18,15 +18,18 @@ struct NewsDetail: View {
             } placeholder: {
                 ProgressView()
             }
-            .padding(.vertical)
-
+            
+            Text(news.title)
+                .font(.title)
+                .bold()
+            
             Text(news.description)
+                .padding()
             
             Spacer()
             
             Link("Voir l'article complet", destination: URL(string: news.url)!)
         }
-        .navigationTitle(news.title)
     }
 }
 

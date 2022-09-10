@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct NewsListView: View {
-    @State private var news: [News] = [
-        News(title: "Titre 1", description: "Description 1", url: "https://www.gizchina.com/2022/09/10/elon-musk-issues-another-notice-to-try-to-end-the-deal-with-twitter/", urlToImage: "https://www.gizchina.com/wp-content/uploads/images/2022/07/1_5ra7TE5oPqAG4nnLsNspug-1200x675.png"),
-        News(title: "Titre 2", description: "Description 2", url: "https://www.gizchina.com/2022/09/10/elon-musk-issues-another-notice-to-try-to-end-the-deal-with-twitter/", urlToImage: "https://www.gizchina.com/wp-content/uploads/images/2022/07/1_5ra7TE5oPqAG4nnLsNspug-1200x675.png"),
-        News(title: "Titre 3", description: "Description 3", url: "https://www.gizchina.com/2022/09/10/elon-musk-issues-another-notice-to-try-to-end-the-deal-with-twitter/", urlToImage: "https://www.gizchina.com/wp-content/uploads/images/2022/07/1_5ra7TE5oPqAG4nnLsNspug-1200x675.png")
-    ]
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(news) { n in
+                ForEach(viewModel.news, id: \.title) { n in
                     NavigationLink {
                         NewsDetail(news: n)
                     } label: {
@@ -27,6 +23,9 @@ struct NewsListView: View {
             }
             .listStyle(.plain)
             .navigationTitle("Liste des articles")
+        }
+        .onAppear {
+            viewModel.retrieveAllNews()
         }
     }
 }
