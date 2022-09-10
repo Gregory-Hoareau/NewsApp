@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct NewsDetail: View {
+    var news: News
+    
     var body: some View {
-        Text("Détail de l'article")
+        VStack {
+            AsyncImage(url: URL(string: news.urlToImage)) { image in
+                image.resizable()
+                    .scaledToFit()
+            } placeholder: {
+                ProgressView()
+            }
+            .padding(.vertical)
+
+            Text(news.description)
+            
+            Spacer()
+            
+            Link("Voir l'article complet", destination: URL(string: news.url)!)
+        }
+        .navigationTitle(news.title)
     }
 }
 
 struct NewsDetail_Previews: PreviewProvider {
     static var previews: some View {
-        NewsDetail()
+        NavigationView {
+            NewsDetail(news: News(title: "Titre de la news", description: "Description de la news", url: "https://www.gizchina.com/2022/09/10/elon-musk-issues-another-notice-to-try-to-end-the-deal-with-twitter/", urlToImage: "https://www.gizchina.com/wp-content/uploads/images/2022/07/1_5ra7TE5oPqAG4nnLsNspug-1200x675.png"))
+        }
     }
 }
