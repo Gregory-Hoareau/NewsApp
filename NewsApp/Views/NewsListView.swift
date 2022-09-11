@@ -12,17 +12,21 @@ struct NewsListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.news, id: \.title) { n in
-                    NavigationLink {
-                        NewsDetail(news: n)
-                    } label: {
-                        NewsListItem(news: n)
+            if viewModel.news.count == 0 {
+                Text("Aucun article n'a pu être chargé")
+            } else {
+                List {
+                    ForEach(viewModel.news, id: \.title) { n in
+                        NavigationLink {
+                            NewsDetail(news: n)
+                        } label: {
+                            NewsListItem(news: n)
+                        }
                     }
                 }
+                .listStyle(.plain)
+                .navigationTitle("Liste des articles")
             }
-            .listStyle(.plain)
-            .navigationTitle("Liste des articles")
         }
         .onAppear {
             viewModel.retrieveAllNews()
