@@ -19,5 +19,7 @@ Pour corriger ce problème, j'ai ajouter une ligne de code retirant les 2 premie
 
 - La gestion de la réponse et des erreurs lors de la réception de la réponse à la requête est très simpliste et pourrait donc être amélioré afin de pouvoir différencier les différentes erreurs possible (timeout, erreur dans l'url, etc.) et afficher des messages plus pertinent que le message actuel présenter si aucun article n'est chargé.
 
+- Dans l'idéal, il ne faudrait pas que les clés d'api apparaisse en clair dans le code
+
 -Tout le développement de l'application à directement était fait sur la branche principale, alors qu'idéalement différentes branches aurait du être créer pour l'implémentation des différentes fonctionnalités
 
