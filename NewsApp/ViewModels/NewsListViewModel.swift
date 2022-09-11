@@ -19,10 +19,14 @@ extension NewsListView {
                 return
             }
             
-            URLSession.shared.dataTask(with: url) { data, _, _ in
-                let decodedResult = try! JSONDecoder().decode(ApiResult.self, from: data!)
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let response = response as? HTTPURLResponse else { return }
+                if error != nil || response.statusCode != 200 { return }
+                
+                var decodedResult = try! JSONDecoder().decode(ApiResult.self, from: data!)
                 
                 DispatchQueue.main.async {
+                    decodedResult.articles.removeFirst(2)
                     self.news = decodedResult.articles
                 }
             }.resume()
