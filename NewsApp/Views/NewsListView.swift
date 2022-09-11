@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewsListView: View {
-    @StateObject private var viewModel = ViewModel()
+    @StateObject private var viewModel = NewsListViewModel()
     
     var body: some View {
         NavigationView {
