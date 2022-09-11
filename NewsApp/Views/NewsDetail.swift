@@ -12,22 +12,28 @@ struct NewsDetail: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: news.urlToImage)) { image in
-                image.resizable()
-                    .scaledToFit()
-            } placeholder: {
-                ProgressView()
+            ScrollView {
+                AsyncImage(url: URL(string: news.urlToImage)) { image in
+                    image.resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }
+                
+                Text(news.title)
+                    .bold()
+                
+                Text(news.description)
+                    .padding()
             }
             
-            Text(news.title)
-                .bold()
-            
-            Text(news.description)
-                .padding()
-            
-            Spacer()
-            
             Link("Voir l'article complet", destination: URL(string: news.url)!)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(.indigo)
+                .tint(.white)
+                .cornerRadius(10)
+                .padding()
         }
     }
 }

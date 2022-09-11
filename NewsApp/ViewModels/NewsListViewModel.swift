@@ -26,8 +26,7 @@ extension NewsListView {
                     self.news = decodedResult.articles
                 }
             }.resume()
-            
-            
         }
+        
     }
 }
