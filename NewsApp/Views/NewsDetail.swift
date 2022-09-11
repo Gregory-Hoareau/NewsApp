@@ -20,7 +20,6 @@ struct NewsDetail: View {
             }
             
             Text(news.title)
-                .font(.title)
                 .bold()
             
             Text(news.description)
